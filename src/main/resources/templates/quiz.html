@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+<title>quiz</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/quiz}">Test</a>
+			</div>
+		</div>
+	</nav>
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	
+    <div th:each="question, questionStat : ${questions}">
+    	&nbsp;
+    	<span th:text="${questionStat.index+1}"></span>&bull;
+        <span th:text="${question.content}"></span>
+        <br>
+        <div>
+            <p th:each="choice : ${question.choices}">
+            	&nbsp;
+            	<input type="checkbox" />
+            	&nbsp;&nbsp;&nbsp;&nbsp;
+                <span th:text="${choice}"></span>
+            </p>
+        </div>
+    </div>
+    
+    <br>
+    <br>
+    <div class="form-group">
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3">
+			<input type="submit" name="ans-submit" id="ans-submit"
+				class="form-control btn btn-primary" value="Submit" />
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
